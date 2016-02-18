@@ -4,6 +4,7 @@
 #define MAX_MEMORIA_BOTON 20
 #include <aJSON.h>
 
+
 #define req  14 //mic REQ line goes to pin 5 through q1 (arduino high pulls request line low)
 #define dat  4 //mic Data line goes to pin 2
 #define clk 13 //mic Clock line goes to pin 3
@@ -119,7 +120,6 @@ void leerBitInstrumento(void);
 void verSiApretoBoton(void);
 
 void loop(void){
-  //server.handleClient();
   webSocket.loop();
   if(no_avise_conexion){
     if(WiFi.status() == WL_CONNECTED){
@@ -151,7 +151,6 @@ void verSiApretoBoton(){
     if(ultimo_valor_firme_boton == 1){
       ultimo_valor_firme_boton = 0;
       apreto_boton = true;
-
       aJsonObject* mensaje_medicion = aJson.createObject();
       aJson.addStringToObject(mensaje_medicion, "tipoDeMensaje", "medicion");
       aJson.addStringToObject(mensaje_medicion, "valor", &ultima_lectura[0]);
@@ -162,7 +161,7 @@ void verSiApretoBoton(){
       webSocket.broadcastTXT(mensaje_json);
       free(mensaje_json);
       aJson.deleteItem(mensaje_medicion);
-      
+  
       Serial.println("apreto boton");
     }
   }
@@ -258,7 +257,7 @@ void leerBitInstrumento(void){
             webSocket.broadcastTXT(mensaje_json);
             free(mensaje_json);
             aJson.deleteItem(mensaje_medicion_tr);
-            
+
             lectura_anterior = ultima_lectura;
           } 
         }
