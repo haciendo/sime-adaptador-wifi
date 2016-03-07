@@ -16,12 +16,14 @@
 #include <ESP8266mDNS.h>
 #include <WebSocketsServer.h>
 
-const char *ssid = "amariszi";
-const char *password = "pipaypipo";
+//const char *ssid = "Fibertel WiFi831";
+//const char *password = "0149488616";
+const char *ssid = "Fibertel WiFi831";
+const char *password = "0149488616";
 bool no_avise_conexion = true;
 
 //ESP8266WebServer server ( 80 );
-WebSocketsServer webSocket = WebSocketsServer(81, "", "mensaje_vortex");
+WebSocketsServer webSocket = WebSocketsServer(1234, "", "mensaje_vortex");
 
 int i = 0; 
 
